@@ -31,3 +31,9 @@ def send_sms(request):
     """
     print(res)
     return HttpResponse('ok')
+
+
+# 注册实例
+def register(request):
+
+    return HttpResponse('ok')
