@@ -4,4 +4,5 @@ from WEB.views import account
 app_name = 'WEB'
 urlpatterns = [
     url(r'^register/$', account.register, name='register'),
+    url(r'^send/sms/$', account.send_sms, name='send_sms'),
 ]
