@@ -15,7 +15,6 @@
 {% endblock %}
 
 {% block content %}
-    </div>
     <div class="account">
         <div class="title">用户注册</div>
         <form id="regForm" method="POST" novalidate>
@@ -66,8 +65,26 @@
         * */
         function bindClickBtnSubmit() {
             $('#btnSubmit').click(function () {
+                $('.error-msg').empty();
                 //收集数据
-                $('#regForm').serialize();   //所有字段的数据 + csrf_token
+                {#$('#regForm').serialize();   //所有字段的数据 + csrf_token#}
+                //数据发送到后台
+                $.ajax({
+                    url: "{% url 'register' %}",
+                    type: 'POST',
+                    data: $('#regForm').serialize(),
+                    dataType: 'JSON',
+                    success: function (args) {
+                        // 返回到对应的data页面
+                        if (args.status) {
+                            location.href = args.data
+                        } else {
+                            $.each(args.error, function (key, value) {
+                                $('#id_' + key).next().text(value[0])
+                            })
+                        }
+                    }
+                })
             })
         }
 
