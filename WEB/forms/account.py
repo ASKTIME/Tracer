@@ -130,7 +130,10 @@ class SendSmsForm(forms.Form):
 
 
 class LoginSmsForm(BootStrapForm, forms.Form):
-    mobile_phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ])
+    mobile_phone = forms.CharField(
+        label='手机号',
+        validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ]
+    )
 
     code = forms.CharField(
         label='验证码',
